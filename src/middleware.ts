@@ -6,9 +6,7 @@ export function middleware(req: NextRequest) {
   const response = NextResponse.next();
   const token = req.cookies.get('access_token');
   const { isBot } = userAgent(req);
-  console.log(req.nextUrl.pathname);
-  console.log('===========================1', isBot);
-
+  console.log('req.nextUrl.pathname', req.nextUrl.pathname);
   console.log('1111111111111111111111111111111111', isBot);
   console.log('2222222222222222222222222222222222', req.headers.get('isBot'));
   console.log(

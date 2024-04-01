@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
-import { isbot } from 'isbot';
-
 export function middleware(req: NextRequest) {
   const response = NextResponse.next();
   const token = req.cookies.get('access_token');
@@ -13,15 +11,16 @@ export function middleware(req: NextRequest) {
     '3333333333333333333333333333333333',
     req.headers.get('user-agent')
   );
-  console.log(
-    '444444444444444444444444444444444',
-    isbot(req.headers.get('user-agent'))
-  );
   if (req.nextUrl.pathname === '/mypage') {
     const res = NextResponse.next();
     res.cookies.set('access_token', 'access_tokenaccess_token');
     return res;
   }
+
+  if (isBot) {
+    return response;
+  }
+
   if (!token && req.nextUrl.pathname !== '/mypage') {
     console.log('================================');
     return NextResponse.redirect('https://www.google.com/');

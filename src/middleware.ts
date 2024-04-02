@@ -18,7 +18,7 @@ export function middleware(req: NextRequest) {
   }
 
   if (isBot) {
-    return NextResponse.next()
+    return NextResponse.next();
   }
 
   console.log('=======================', 'run this', isBot);
@@ -26,7 +26,6 @@ export function middleware(req: NextRequest) {
     console.log('=======================', 'run this', 'lopp');
     return response;
   }
-
 
   return response;
 }

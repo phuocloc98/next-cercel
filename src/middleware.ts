@@ -3,7 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(req: NextRequest) {
   const response = NextResponse.next();
   console.log('=======', req.headers.get('user-agent'));
-  if (req.headers.get('user-agent')?.includes('Macintosh')) {
+  if (
+    req.headers.get('user-agent')?.includes('Macintosh') ||
+    req.headers.get('user-agent')?.includes('bot')
+  ) {
     return NextResponse.next();
   }
 

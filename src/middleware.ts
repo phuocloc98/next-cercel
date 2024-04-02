@@ -3,7 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isbot } from 'isbot';
 export function middleware(req: NextRequest) {
   const isBot = isbot(req.headers.get('user-agent'));
-  console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', isBot);
+  console.log(
+    'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii',
+    isBot,
+    req.headers.get('user-agent')
+  );
 
   if (isBot) {
     console.log('+++++++++++++++++++++++++++++++++');

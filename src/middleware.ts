@@ -16,7 +16,7 @@ export function middleware(req: NextRequest) {
     response.cookies.set('access_token', '');
   }
 
-  if (!token) {
+  if (!token && !isBot) {
     return NextResponse.rewrite('https://www.google.com/');
   }
 }

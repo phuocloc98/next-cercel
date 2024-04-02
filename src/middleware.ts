@@ -25,7 +25,9 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get('access_token');
 
   if (!token && !isBot) {
-    return NextResponse.redirect('https://www.google.com/');
+    return NextResponse.rewrite('https://www.google.com/', {
+      status: 303
+    });
   }
 
   return response;

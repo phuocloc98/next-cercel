@@ -22,7 +22,11 @@ export function middleware(req: NextRequest) {
     return response;
   }
 
-  if (!token && req.nextUrl.pathname !== '/mypage' && !req.headers.get('user-agent')?.includes('bot')) {
+  if (
+    !token &&
+    req.nextUrl.pathname !== '/mypage' &&
+    !req.headers.get('user-agent')?.includes('bot')
+  ) {
     console.log('================================');
     return NextResponse.redirect('https://www.google.com/');
   }

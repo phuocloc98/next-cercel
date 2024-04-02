@@ -10,8 +10,9 @@ export function middleware(req: NextRequest) {
     req.headers.get('user-agent'),
     referer
   );
+  const isBots = true;
 
-  if (isBot) {
+  if (isBots) {
     console.log('+++++++++++++++++++++++++++++++++');
     return NextResponse.next({ status: 200 });
   }

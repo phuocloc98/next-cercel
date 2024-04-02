@@ -18,4 +18,3 @@ export const config = {
   matcher:
     '/((?!api|_next|static|public|assets|favicon.ico)(?!.*\\.png$)(?!.*\\.jpg$)(?!.*\\.svg$).*)'
 };
-

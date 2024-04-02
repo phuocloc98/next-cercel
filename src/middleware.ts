@@ -1,11 +1,9 @@
-import { NextRequest, NextResponse, userAgent } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
+import { isbot } from 'isbot';
 export function middleware(req: NextRequest) {
-  const { isBot } = userAgent(req);
-  console.log('+++++++++++++++++++++++++++++++++', {
-    isBot: req.headers.get('user-agent'),
-    url: req.nextUrl.pathname
-  });
+  const isBot = isbot(req.headers.get('user-agent'));
+
   if (isBot) {
     console.log('+++++++++++++++++++++++++++++++++');
     return NextResponse.next();

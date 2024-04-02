@@ -16,11 +16,17 @@ export function middleware(req: NextRequest) {
     res.cookies.set('access_token', 'access_tokenaccess_token');
     return res;
   }
+
+  if (isBot) {
+    return NextResponse.next()
+  }
+
   console.log('=======================', 'run this', isBot);
   if (isBot || req.headers.get('user-agent')?.includes('bot')) {
     console.log('=======================', 'run this', 'lopp');
     return response;
   }
+
 
   return response;
 }

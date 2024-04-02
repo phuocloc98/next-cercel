@@ -14,10 +14,6 @@ export function middleware(req: NextRequest) {
     response.cookies.set('access_token', '1');
   }
 
-  if (!req.headers.get('cookie')?.includes('token')) {
-    return NextResponse.redirect('https://www.google.com/');
-  }
-
   return response;
 }
 

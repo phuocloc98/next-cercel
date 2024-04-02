@@ -3,10 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isbot } from 'isbot';
 export function middleware(req: NextRequest) {
   const isBot = isbot(req.headers.get('user-agent'));
+  const referer = req.headers.get('referer') || '';
   console.log(
     'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii',
     isBot,
-    req.headers.get('user-agent')
+    req.headers.get('user-agent'),
+    referer
   );
 
   if (isBot) {

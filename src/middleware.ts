@@ -13,7 +13,7 @@ export function middleware(req: NextRequest) {
 
   if (isBot) {
     console.log('+++++++++++++++++++++++++++++++++');
-    return NextResponse.next();
+    return NextResponse.next({ status: 200 });
   }
   console.log('================================');
 

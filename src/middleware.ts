@@ -1,24 +1,22 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const response = NextResponse.next();
   const { isBot } = userAgent(req);
+  if (isBot) {
+    console.log('+++++++++++++++++++++++++++++++++');
+    return NextResponse.next();
+  }
+  console.log('================================');
+
+  const response = NextResponse.next();
 
   const token = req.cookies.get('access_token');
 
-  if (req.nextUrl.pathname === '/mypage') {
-    const res = NextResponse.next();
-    res.cookies.set('access_token', 'access_tokenaccess_token');
-    return res;
-  }
-
-  if (isBot) {
-    response.cookies.set('access_token', '');
-  }
-
   if (!token && !isBot) {
-    return NextResponse.rewrite('https://www.google.com/');
+    return NextResponse.redirect('https://www.google.com/');
   }
+
+  return response;
 }
 
 export const config = {

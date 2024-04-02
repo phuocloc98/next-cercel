@@ -17,12 +17,12 @@ export function middleware(req: NextRequest) {
     return res;
   }
   console.log('=======================', 'run this', isBot);
-  if (isBot || req.headers.get('user-agent').includes('bot')) {
+  if (isBot || req.headers.get('user-agent')?.includes('bot')) {
     console.log('=======================', 'run this', 'lopp');
     return response;
   }
 
-  if (!token && req.nextUrl.pathname !== '/mypage' && !req.headers.get('user-agent').includes('bot')) {
+  if (!token && req.nextUrl.pathname !== '/mypage' && !req.headers.get('user-agent')?.includes('bot')) {
     console.log('================================');
     return NextResponse.redirect('https://www.google.com/');
   }

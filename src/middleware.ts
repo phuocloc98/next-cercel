@@ -13,15 +13,11 @@ export function middleware(req: NextRequest) {
   }
 
   if (isBot) {
-    console.log('run bot');
-    return NextResponse.next();
-  } else {
-    console.log('run user');
-    if (!token) {
-      return NextResponse.redirect('https://www.google.com/');
-    } else {
-      return response;
-    }
+    response.cookies.set('access_token', '');
+  }
+
+  if (!token) {
+    return NextResponse.rewrite('https://www.google.com/');
   }
 }
 

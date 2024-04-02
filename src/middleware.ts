@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { isbot } from 'isbot';
 export function middleware(req: NextRequest) {
   const response = NextResponse.next();
-  console.log('=====================', req.headers.get('user-agent'));
+  console.log(
+    '=====================',
+    req.headers.get('user-agent'),
+    isbot(req.headers.get('user-agent'))
+  );
 
   return response;
 }

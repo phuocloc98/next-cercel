@@ -16,8 +16,9 @@ export function middleware(req: NextRequest) {
     res.cookies.set('access_token', 'access_tokenaccess_token');
     return res;
   }
-
+  console.log('=======================', 'run this', isBot);
   if (isBot) {
+    console.log('=======================', 'run this', 'lopp');
     return response;
   }
 

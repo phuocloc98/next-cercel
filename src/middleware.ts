@@ -13,8 +13,10 @@ export function middleware(req: NextRequest) {
   }
 
   if (isBot) {
+    console.log('run bot');
     return NextResponse.next();
   } else {
+    console.log('run user');
     if (!token) {
       return NextResponse.redirect('https://www.google.com/');
     } else {

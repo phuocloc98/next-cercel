@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const response = NextResponse.next();
-  console.log(req.headers.get('user-agent'));
+  console.log('=======', req.headers.get('user-agent'));
+  if (req.headers.get('user-agent')?.includes('Macintosh')) {
+    return NextResponse.next();
+  }
+
   if (req.nextUrl.pathname === '/mypage') {
     response.cookies.set('access_token', '1');
   }

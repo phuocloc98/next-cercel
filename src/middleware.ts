@@ -11,6 +11,7 @@ export function middleware(req: NextRequest) {
     '3333333333333333333333333333333333',
     req.headers.get('user-agent')
   );
+
   if (req.nextUrl.pathname === '/mypage') {
     const res = NextResponse.next();
     res.cookies.set('access_token', 'access_tokenaccess_token');

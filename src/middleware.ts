@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, userAgent } from 'next/server';
 
 import { isbot } from 'isbot';
 const BOT_THIRD = [
@@ -6,6 +6,7 @@ const BOT_THIRD = [
 ];
 export function middleware(req: NextRequest) {
   const response = NextResponse.next();
+  const ua = userAgent(req);
   const token = req.cookies.get('access_token');
   // console.log(
   //   '=====================',
@@ -13,7 +14,7 @@ export function middleware(req: NextRequest) {
   //   isbot(req.headers.get('user-agent'))
   // );
 
-  console.log('-----=-=-=-=-=-=-=-=-=', Object.fromEntries([...req.headers]));
+  console.log('-----=-=-=-=-=-=-=-=-=', ua);
   if (
     isbot(req.headers.get('user-agent')) ||
     BOT_THIRD.includes(req.headers.get('user-agent') || '')

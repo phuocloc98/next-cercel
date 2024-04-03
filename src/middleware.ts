@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const BOT_THIRD = [
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36' // metatags.io
+];
+
 import { isbot } from 'isbot';
 export function middleware(req: NextRequest) {
   const response = NextResponse.next();
@@ -10,7 +14,10 @@ export function middleware(req: NextRequest) {
     isbot(req.headers.get('user-agent'))
   );
 
-  if (isbot(req.headers.get('user-agent'))) {
+  if (
+    isbot(req.headers.get('user-agent')) ||
+    BOT_THIRD.includes(req.headers.get('user-agent') || '')
+  ) {
     return response;
   }
 

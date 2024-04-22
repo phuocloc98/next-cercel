@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { Noto_Sans_Mono, Roboto } from 'next/font/google';
+import { headers } from 'next/headers';
 
 import NextThemeProvider from 'context/NextThemeContext';
 
@@ -21,22 +21,34 @@ const noto_sans_mono = Noto_Sans_Mono({
   style: ['normal']
 });
 
-export const metadata: Metadata = {
-  title: 'meta title',
-  description: 'meta description',
-  metadataBase: new URL('https://next-cercel.vercel.app'),
-  openGraph: {
-    type: 'website',
-    title: 'OP_ title',
-    description: 'OG_description',
-    url: 'https://next-cercel.vercel.app/',
-    siteName: 'OG_title',
-    locale: 'vi_VN'
-  },
-  twitter: {
-    card: 'summary_large_image'
-  }
-};
+export function generateImageMetadata() {
+  const headersList = headers();
+  const header_url = headersList.get('x-path-url');
+  const slug = header_url?.split('/');
+  const ogImage = slug
+    ? `https://images.contentstack.io/v3/assets/blt187521ff0727be24/blta65bbcd489ac4d4e/60ee0fde47e9392c538205a5/${
+        slug[slug?.length - 1]
+      }_1.jpg`
+    : '';
+
+  return {
+    title: 'meta title',
+    description: 'meta description',
+    metadataBase: new URL('https://next-cercel.vercel.app'),
+    openGraph: {
+      type: 'website',
+      title: 'OP_ title',
+      description: 'OG_description',
+      url: 'https://next-cercel.vercel.app/',
+      siteName: 'OG_title',
+      locale: 'vi_VN',
+      images: [ogImage]
+    },
+    twitter: {
+      card: 'summary_large_image'
+    }
+  };
+}
 
 export default function RootLayout({
   children

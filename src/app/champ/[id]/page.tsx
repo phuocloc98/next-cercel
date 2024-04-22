@@ -1,11 +1,11 @@
 type CHAMPS = { id: number; name: string }[];
 
 export async function generateStaticParams() {
-  const champs = await fetch(
+  const champs: CHAMPS = await fetch(
     'https://raw.githubusercontent.com/phuocloc98/lol-champ/main/champ.json'
-  );
-  const data = champs as unknown as CHAMPS;
-  return data.map((champs) => ({
+  ).then((res) => res.json());
+
+  return champs.map((champs) => ({
     id: champs.name
   }));
 }

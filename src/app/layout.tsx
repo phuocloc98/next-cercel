@@ -26,7 +26,7 @@ export async function generateMetadata() {
   const header_url = headersList.get('x-path-url');
   const slug = header_url?.split('/');
   const ogImage = slug
-    ? `https://images.contentstack.io/v3/assets/blt187521ff0727be24/blta65bbcd489ac4d4e/60ee0fde47e9392c538205a5/${
+    ? `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${
         slug[slug?.length - 1]
       }_1.jpg`
     : '';

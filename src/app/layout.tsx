@@ -21,7 +21,7 @@ const noto_sans_mono = Noto_Sans_Mono({
   style: ['normal']
 });
 
-export function generateImageMetadata() {
+export async function generateMetadata() {
   const headersList = headers();
   const header_url = headersList.get('x-path-url');
   const slug = header_url?.split('/');

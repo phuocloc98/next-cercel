@@ -21,35 +21,6 @@ const noto_sans_mono = Noto_Sans_Mono({
   style: ['normal']
 });
 
-export async function generateMetadata() {
-  const headersList = headers();
-  const header_url = headersList.get('x-path-url');
-  const slug = header_url?.split('/');
-  const ogImage = slug
-    ? `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${
-        slug[slug?.length - 1]
-      }_1.jpg`
-    : '';
-
-  return {
-    title: 'meta title',
-    description: 'meta description',
-    metadataBase: new URL('https://next-cercel.vercel.app'),
-    openGraph: {
-      type: 'website',
-      title: 'OP_ title',
-      description: 'OG_description',
-      url: 'https://next-cercel.vercel.app/',
-      siteName: 'OG_title',
-      locale: 'vi_VN',
-      images: [ogImage]
-    },
-    twitter: {
-      card: 'summary_large_image'
-    }
-  };
-}
-
 export default function RootLayout({
   children
 }: {

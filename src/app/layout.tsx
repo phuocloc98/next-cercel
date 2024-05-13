@@ -1,5 +1,4 @@
 import { Noto_Sans_Mono, Roboto } from 'next/font/google';
-import { headers } from 'next/headers';
 
 import NextThemeProvider from 'context/NextThemeContext';
 
